@@ -11,7 +11,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        fontFamily: 'MyCustomFont',
+        fontFamily: 'Avenir',
         appBarTheme: const AppBarTheme(
           backgroundColor: AppColors.kscaffoldBackgroundColor,
           iconTheme: IconThemeData(color: AppColors.kiconthemeColor),

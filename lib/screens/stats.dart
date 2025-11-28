@@ -43,170 +43,157 @@ class _StatsState extends State<Stats> {
     final size = MediaQuery.of(context).size;
     final Color textColor = AppColors.kiconthemeColor;
 
-    return Scaffold(
-      backgroundColor: widget.backgroundColor,
-      body: Stack(
-        children: [
-          Container(
-            height: size.height * 0.45,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  widget.backgroundColor,
-                  widget.primaryColor.withValues(alpha: 0.85),
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: widget.backgroundColor,
+        body: Stack(
+          children: [
+            Container(
+              height: size.height * 0.45,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    widget.backgroundColor,
+                    widget.primaryColor.withValues(alpha: 0.85),
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
               ),
             ),
-          ),
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            height: size.height * 0.4,
-            child: SafeArea(
-              child: Column(
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          onPressed: () => Navigator.of(context).pop(),
-                          icon: Icon(
-                            Icons.arrow_back,
-                            color: textColor,
-                            size: 24,
-                          ),
-                        ),
-                        Text(
-                          widget.pokemonName,
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w900,
-                            color: textColor,
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.favorite_border_rounded,
-                            color: textColor,
-                            size: 24,
-                          ),
-                        ),
-                      ],
+                  IconButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    icon: Icon(Icons.arrow_back, color: textColor, size: 24),
+                  ),
+                  Text(
+                    widget.pokemonName,
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w900,
+                      color: textColor,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.favorite_border_rounded,
+                      color: textColor,
+                      size: 24,
                     ),
                   ),
                 ],
               ),
             ),
-          ),
-          Positioned(
-            top: size.height * 0.12,
-            left: 0,
-            right: 0,
-            child: Hero(
-              tag: widget.imagePath,
-              child: Image.asset(
-                widget.imagePath,
-                height: 250,
-                fit: BoxFit.contain,
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 70),
+              child: Hero(
+                tag: widget.imagePath,
+                child: Image.asset(
+                  widget.imagePath,
+                  width: size.width,
+                  height: 250,
+                  fit: BoxFit.contain,
+                ),
               ),
             ),
-          ),
-          DraggableScrollableSheet(
-            initialChildSize: 0.55,
-            minChildSize: 0.55,
-            maxChildSize: 0.9,
-            builder: (context, scrollController) {
-              return Container(
-                decoration: BoxDecoration(
-                  color: const Color(0xFF1E1E1E),
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(40)),
-                ),
-                child: ListView(
-                  controller: scrollController,
-                  padding: const EdgeInsets.fromLTRB(20, 10, 20, 100),
-                  children: [
-                    Center(
-                      child: Container(
-                        margin: const EdgeInsets.only(bottom: 20),
-                        width: 40,
-                        height: 5,
-                        decoration: BoxDecoration(
-                          color: Colors.grey[700],
-                          borderRadius: BorderRadius.circular(10),
+            DraggableScrollableSheet(
+              initialChildSize: 0.55,
+              minChildSize: 0.55,
+              maxChildSize: 0.9,
+              builder: (context, scrollController) {
+                return Container(
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF1E1E1E),
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(40),
+                    ),
+                  ),
+                  child: ListView(
+                    controller: scrollController,
+                    padding: const EdgeInsets.fromLTRB(20, 10, 20, 100),
+                    children: [
+                      Center(
+                        child: Container(
+                          margin: const EdgeInsets.only(bottom: 20),
+                          width: 40,
+                          height: 5,
+                          decoration: BoxDecoration(
+                            color: Colors.grey[700],
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                         ),
                       ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: List.generate(tabs.length, (index) {
-                        final bool isSelected = selectedIndex == index;
-                        return GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              selectedIndex = index;
-                            });
-                          },
-                          child: Column(
-                            children: [
-                              Text(
-                                tabs[index],
-                                style: TextStyle(
-                                  color: isSelected
-                                      ? Colors.white
-                                      : Colors.grey,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const SizedBox(height: 6),
-                              if (isSelected)
-                                Container(
-                                  height: 6,
-                                  width: 6,
-                                  decoration: const BoxDecoration(
-                                    color: Colors.white,
-                                    shape: BoxShape.circle,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: List.generate(tabs.length, (index) {
+                          final bool isSelected = selectedIndex == index;
+                          return GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                selectedIndex = index;
+                              });
+                            },
+                            child: Column(
+                              children: [
+                                Text(
+                                  tabs[index],
+                                  style: TextStyle(
+                                    color: isSelected
+                                        ? Colors.white
+                                        : Colors.grey,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                )
-                              else
+                                ),
                                 const SizedBox(height: 6),
-                            ],
-                          ),
-                        );
-                      }),
-                    ),
-                    const SizedBox(height: 30),
-                    selectedIndex == 1
-                        ? buildStatsSection()
-                        : buildPlaceholderSection(tabs[selectedIndex]),
-                  ],
-                ),
-              );
-            },
-          ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: CustomNavBar(
-              onHomeTap: () => Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (_) => const Homescreen()),
-                (route) => false,
-              ),
-              onNotificationsTap: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => const NotificationPage()),
-              ),
-              onUserTap: () => Navigator.of(
-                context,
-              ).push(MaterialPageRoute(builder: (_) => const UserPage())),
+                                if (isSelected)
+                                  Container(
+                                    height: 6,
+                                    width: 6,
+                                    decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                      shape: BoxShape.circle,
+                                    ),
+                                  )
+                                else
+                                  const SizedBox(height: 6),
+                              ],
+                            ),
+                          );
+                        }),
+                      ),
+                      const SizedBox(height: 30),
+                      selectedIndex == 1
+                          ? buildStatsSection()
+                          : buildPlaceholderSection(tabs[selectedIndex]),
+                    ],
+                  ),
+                );
+              },
             ),
-          ),
-        ],
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: CustomNavBar(
+                onHomeTap: () => Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (_) => const Homescreen()),
+                  (route) => false,
+                ),
+                onNotificationsTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => const NotificationPage()),
+                ),
+                onUserTap: () => Navigator.of(
+                  context,
+                ).push(MaterialPageRoute(builder: (_) => const UserPage())),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

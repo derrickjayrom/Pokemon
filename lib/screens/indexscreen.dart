@@ -15,14 +15,16 @@ class _IndexScreenState extends State<IndexScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: currentIndex,
-        children: const [
-          Scaffold(backgroundColor: Colors.yellow),
-          Homescreen(),
-          Search(),
-          Scaffold(backgroundColor: Colors.black),
-        ],
+      body: SafeArea(
+        child: IndexedStack(
+          index: currentIndex,
+          children: const [
+            Scaffold(backgroundColor: Colors.yellow),
+            Homescreen(),
+            Search(),
+            Scaffold(backgroundColor: Colors.black),
+          ],
+        ),
       ),
 
       // bottomNavigationBar: ConvexBottomNavBar(
