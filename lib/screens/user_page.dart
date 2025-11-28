@@ -13,7 +13,7 @@ class UserPage extends StatelessWidget {
       ),
       body: const Center(
         child: Text(
-          'User profile placeholder',
+          'User',
           style: TextStyle(color: Colors.white, fontSize: 16),
         ),
       ),

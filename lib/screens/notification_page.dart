@@ -13,7 +13,7 @@ class NotificationPage extends StatelessWidget {
       ),
       body: const Center(
         child: Text(
-          'Notification feed coming soon',
+          'Notification',
           style: TextStyle(color: Colors.white, fontSize: 16),
         ),
       ),
