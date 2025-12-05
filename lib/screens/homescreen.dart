@@ -1,4 +1,3 @@
-import 'package:device_frame/device_frame.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pokemon/screens/notification_page.dart';
@@ -153,15 +152,19 @@ class _HomescreenState extends State<Homescreen> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(
-                              builder: (_) => DeviceFrame(
-                                device: Devices.ios.iPhone13,
-                                isFrameVisible: true,
-                                orientation: Orientation.portrait,
-                                screen: const Search(),
-                              ),
-                            ),
+                            MaterialPageRoute(builder: (_) => Search()),
                           );
+                          // Navigator.push
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (_) => DeviceFrame(
+                          //       device: Devices.ios.iPhone13,
+                          //       isFrameVisible: true,
+                          //       orientation: Orientation.portrait,
+                          //       screen: const Search(),
+                          //     ),
+                          //   ),
+                          // );
                         },
                       ),
                       const SizedBox(width: 16),

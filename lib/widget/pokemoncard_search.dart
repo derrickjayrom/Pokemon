@@ -39,11 +39,14 @@ class _PokemonCardState extends State<PokemonCard> {
 
           Positioned(
             top: -10,
-            child: Image.asset(
-              widget.imagePath,
-              height: 178,
-              width: 174,
-              fit: BoxFit.contain,
+            child: Hero(
+              tag: widget.imagePath,
+              child: Image.asset(
+                widget.imagePath,
+                height: 178,
+                width: 174,
+                fit: BoxFit.contain,
+              ),
             ),
           ),
 
