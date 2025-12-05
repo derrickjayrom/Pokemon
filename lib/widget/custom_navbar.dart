@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomNavBar extends StatelessWidget {
+class CustomNavBar extends StatefulWidget {
   final VoidCallback? onHomeTap;
   final VoidCallback? onNotificationsTap;
   final VoidCallback? onUserTap;
@@ -12,6 +12,11 @@ class CustomNavBar extends StatelessWidget {
     this.onUserTap,
   });
 
+  @override
+  State<CustomNavBar> createState() => _CustomNavBarState();
+}
+
+class _CustomNavBarState extends State<CustomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,7 +38,7 @@ class CustomNavBar extends StatelessWidget {
               children: [
                 GestureDetector(
                   behavior: HitTestBehavior.opaque,
-                  onTap: onNotificationsTap,
+                  onTap: widget.onNotificationsTap,
                   child: const Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -48,7 +53,7 @@ class CustomNavBar extends StatelessWidget {
                 const SizedBox(width: 40),
                 GestureDetector(
                   behavior: HitTestBehavior.opaque,
-                  onTap: onUserTap,
+                  onTap: widget.onUserTap,
                   child: const Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -66,7 +71,7 @@ class CustomNavBar extends StatelessWidget {
           Positioned(
             bottom: 20,
             child: GestureDetector(
-              onTap: onHomeTap,
+              onTap: widget.onHomeTap,
               child: Container(
                 height: 60,
                 width: 60,
